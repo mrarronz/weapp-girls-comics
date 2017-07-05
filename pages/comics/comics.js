@@ -59,9 +59,6 @@ Page({
    */
   clickComicItem: function (e) {
     var comicId = e.currentTarget.dataset.id
-    if (this.data.selectedItem == comicId) {
-      return
-    }
     this.setData({ selectedItem: comicId })
     wx.showLoading({
       title: '加载中...',
