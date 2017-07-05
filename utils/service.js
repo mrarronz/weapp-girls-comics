@@ -16,6 +16,7 @@ module.exports = {
         "page": pageIndex
       },
       success: function (res) {
+        console.log("美女图片接口调用失败")
         console.log(res)
         let resultCode = res.data.showapi_res_code
         if (resultCode == 0) {
@@ -32,6 +33,7 @@ module.exports = {
         }
       },
       fail: function (res) {
+        console.log("美女图片接口调用失败")
         console.log(res)
         cb([])
       }
@@ -50,10 +52,21 @@ module.exports = {
         "page": pageIndex
       },
       success: function (res) {
+        console.log("漫画列表接口调用成功")
         console.log(res)
+        let resultCode = res.data.showapi_res_code
+        if (resultCode == 0) {
+          let resultBody = res.data.showapi_res_body
+          let contentList = resultBody.pagebean.contentlist
+          cb(contentList)
+        } else {
+          cb([])
+        }
       },
       fail: function (res) {
+        console.log("漫画列表接口调用失败")
         console.log(res)
+        cb([])
       }
     })
   },
@@ -70,10 +83,20 @@ module.exports = {
         "id": comicId
       },
       success: function (res) {
+        console.log("漫画详情接口调用成功")
         console.log(res)
+        let resultCode = res.data.showapi_res_code
+        if (resultCode == 0) {
+          let resultBody = res.data.showapi_res_body
+          cb(resultBody.img)
+        } else {
+          cb(null)
+        }
       },
       fail: function (res) {
+        console.log("漫画详情接口调用失败")
         console.log(res)
+        cb(null)
       }
     })
   }

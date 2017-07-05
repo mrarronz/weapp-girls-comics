@@ -1,18 +1,25 @@
 // comics.js
+var service = require("../../utils/service.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    comicList: [],
+    pageIndex: 1,
+    showLoading: true,
+    hasMore: true,
+    currentImageUrl: null,
+    selectedItem: null 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.loadData()
   },
 
   /**
@@ -23,44 +30,54 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.loadData()
   },
 
   /**
-   * 用户点击右上角分享
+   * 加载数据
    */
-  onShareAppMessage: function () {
-  
+  loadData: function () {
+    var that = this
+    service.getComicsList(this.data.pageIndex, function (res) {
+      var comics = that.data.comicList.concat(res)
+      var hasMore = res.length > 0
+      var pageIndex = (res.length > 0) ? ++that.data.pageIndex : that.data.pageIndex
+      that.setData({
+        comicList: comics,
+        pageIndex: pageIndex,
+        showLoading: false,
+        hasMore: hasMore
+      })
+    })
+  },
+
+  /**
+   * 点击查看漫画详情
+   */
+  clickComicItem: function (e) {
+    var comicId = e.currentTarget.dataset.id
+    if (this.data.selectedItem == comicId) {
+      return
+    }
+    this.setData({ selectedItem: comicId })
+    wx.showLoading({
+      title: '加载中...',
+    })
+    service.getComicsDetail(comicId, function (res) {
+      wx.hideLoading()
+      if (res == null) {
+        wx.showToast({
+          title: '图片获取失败',
+        })
+        return
+      }
+      wx.previewImage({
+        current: res,
+        urls: [res],
+      })
+    })
   }
 })

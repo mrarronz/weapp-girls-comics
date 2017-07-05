@@ -1,2 +1,34 @@
 <!--comics.wxml-->
+<block wx:if="{{showLoading}}">
+  <view class="page-loading">
+    <text class="weui-loading"></text>
+    <text class="loading-text">努力加载中</text>
+  </view>
+</block>
+<block wx:else>
+  <view class="container">
+    <view class="wx-cells-plain">
+      <block wx:for="{{comicList}}" wx:key="">
+        <view  bindtap="clickComicItem" class="wx-cell flex-row" data-id="{{item.id}}" hover-class="wx-cell-highlight-color">
+          <text class="wx-cell-text">{{item.title}}</text>
+          <image class="wx-visible-tag"  src="../../assets/icon-visible.png" wx:if="{{selectedItem == item.id}}"></image>
+          <image class="wx-cell-arrow" src="../../assets/icon-cell-arrow.png"></image>
+        </view>
+      </block>
+    </view>
+    <view class="load-more-wrap">
+      <block wx:if="{{hasMore}}">
+        <view class="load-content">
+          <text class="weui-loading"></text>
+          <text class="loading-text">努力加载中</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="load-content">
+          <text>没有更多内容了</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</block>
 

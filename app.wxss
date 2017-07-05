@@ -49,3 +49,55 @@ page {
   font-size: 14px;
   color: #999;
 }
+
+.wx-cells-group {
+  width: 100%;
+  font-size: 34rpx;
+  margin-top: 40rpx;
+  border-top: 1rpx solid #d9d9d9;
+  border-bottom: 1rpx solid #d9d9d9;
+  background-color: #fff;
+}
+
+.wx-cells-plain {
+  width: 100%;
+  font-size: 34rpx;
+  border-top: 1rpx solid #d9d9d9;
+  background-color: #fff;
+}
+
+.wx-cell {
+  padding: 30rpx 0 30rpx 0;
+  align-items: center;
+  border-bottom: 1rpx solid #d9d9d9;
+}
+
+.wx-cell-text {
+  flex: 1;
+  margin-left: 30rpx;
+}
+
+.wx-cell-arrow {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+  margin-right: 20rpx;
+}
+
+.wx-cell-highlight-color {
+  background-color: #f5f5f5;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.no-border {
+  border: 0;
+}

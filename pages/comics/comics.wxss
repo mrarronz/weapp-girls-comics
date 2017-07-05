@@ -1,1 +1,7 @@
 /* comics.wxss */
+.wx-visible-tag {
+  width: 40rpx;
+  height: 25rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
