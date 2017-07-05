@@ -1,0 +1,45 @@
+<!--index.wxml-->
+<view class="page-container">
+  <!-- nav-bar -->
+  <view class="nav-bar">
+    <scroll-view class="nav-bar-scroll" scroll-x="true">
+      <block wx:for="{{types}}" wx:key="" wx:for-item="typeItem">
+        <view class="scroll-item {{typeItem.type==currentType ? 'current' : ''}}" bindtap="typeButtonTap" data-type="{{typeItem.type}}">
+          {{typeItem.name}}
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <block wx:if="{{showLoading}}">
+    <view class="page-loading">
+      <text class="weui-loading"></text>
+      <text class="loading-text">努力加载中</text>
+    </view>
+  </block>
+  <block wx:else>
+    <!-- 内容视图 -->
+    <view class="scroll-view-content">
+      <block wx:for="{{imageList}}" wx:key="">
+        <view class="beauty_item" data-url="{{item.thumb}}" bindtap="showBigImage">
+          <image src="{{item.thumb}}" mode="aspectFill"></image>
+          <text>{{item.title}}</text>
+        </view>
+      </block>
+      <view class="load-more-wrap">
+        <block wx:if="{{hasMore}}">
+          <view class="load-content">
+            <text class="weui-loading"></text>
+            <text class="loading-text">努力加载中</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="load-content">
+            <text>没有更多内容了</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+  
+</view>

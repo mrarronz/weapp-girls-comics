@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/comics/comics"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#d81e06",
+    "navigationBarTitleText": "花瓣福利",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#d81e06",
+    "list": [
+      {
+      "pagePath": "pages/index/index",
+      "text": "花瓣",
+      "iconPath": "assets/icon-girls-normal.png",
+      "selectedIconPath": "assets/icon-girls-selected.png"
+      },
+      {
+        "pagePath": "pages/comics/comics",
+        "text": "漫画",
+        "iconPath": "assets/icon-comics-normal.png",
+        "selectedIconPath": "assets/icon-comics-selected.png"
+      }
+    ]
+  }
+}
