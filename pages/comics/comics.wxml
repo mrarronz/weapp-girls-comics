@@ -8,9 +8,9 @@
 <block wx:else>
   <view class="container">
     <view class="wx-cells-plain">
-      <block wx:for="{{comicList}}" wx:key="">
+      <block wx:for="{{comicList}}" wx:key="" wx:for-index="idx">
         <view  bindtap="clickComicItem" class="wx-cell flex-row" data-id="{{item.id}}" hover-class="wx-cell-highlight-color">
-          <text class="wx-cell-text">{{item.title}}</text>
+          <text class="wx-cell-text">{{idx+1}}. {{item.title}}</text>
           <image class="wx-visible-tag"  src="../../assets/icon-visible.png" wx:if="{{selectedItem == item.id}}"></image>
           <image class="wx-cell-arrow" src="../../assets/icon-cell-arrow.png"></image>
         </view>
