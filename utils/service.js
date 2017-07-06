@@ -8,7 +8,7 @@ module.exports = {
  */
   getBeautifulGirls: function (pageIndex, dataType, cb) {
     wx.request({
-      url: define.baseURL,
+      url: "https://route.showapi.com/819-1",
       data: {
         "showapi_appid": define.appId,
         "showapi_sign": define.appSecret,
@@ -97,6 +97,38 @@ module.exports = {
         console.log("漫画详情接口调用失败")
         console.log(res)
         cb(null)
+      }
+    })
+  },
+
+  /**
+   * 段子接口
+   */
+  getJokeList: function (pageIndex, dataType, cb) {
+    wx.request({
+      url: 'https://route.showapi.com/255-1',
+      data: {
+        "showapi_appid": define.appId,
+        "showapi_sign": define.appSecret,
+        "type": dataType,
+        "page": pageIndex
+      },
+      success: function (res) {
+        console.log("段子接口调用成功")
+        console.log(res)
+        let resultCode = res.data.showapi_res_code
+        if (resultCode == 0) {
+          let resultBody = res.data.showapi_res_body
+          var contentList = resultBody.pagebean.contentlist
+          cb(contentList)
+        } else {
+          cb([])
+        }
+      },
+      fail: function (res) {
+        console.log("段子接口调用失败")
+        console.log(res)
+        cb([])
       }
     })
   }

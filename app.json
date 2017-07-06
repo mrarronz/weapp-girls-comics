@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/comics/comics"
+    "pages/comics/comics",
+    "pages/jokes/joke"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,10 +15,16 @@
     "selectedColor": "#d81e06",
     "list": [
       {
-      "pagePath": "pages/index/index",
-      "text": "花瓣",
-      "iconPath": "assets/icon-girls-normal.png",
-      "selectedIconPath": "assets/icon-girls-selected.png"
+        "pagePath": "pages/index/index",
+        "text": "福利",
+        "iconPath": "assets/icon-girls-normal.png",
+        "selectedIconPath": "assets/icon-girls-selected.png"
+      },
+      {
+        "pagePath": "pages/jokes/joke",
+        "text": "段子",
+        "iconPath": "assets/icon-joke-normal.png",
+        "selectedIconPath": "assets/icon-joke-selected.png"
       },
       {
         "pagePath": "pages/comics/comics",

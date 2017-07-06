@@ -1,0 +1,121 @@
+<!--joke.wxml-->
+<view class="page-container">
+
+<!--导航栏-->
+  <view class="wx-navbar">
+    <block wx:for="{{types}}" wx:key="" wx:for-item="typeItem">
+        <view class="wx-navbar-item {{typeItem.type==currentType ? 'wx-current-item' : ''}}" bindtap="typeButtonTap" data-type="{{typeItem.type}}">
+          {{typeItem.name}}
+        </view>
+      </block>
+  </view>
+
+  <!--内容视图-->
+  <block wx:if="{{showLoading}}">
+    <view class="page-loading">
+      <text class="weui-loading"></text>
+      <text class="loading-text">努力加载中</text>
+    </view>
+  </block>
+  <block wx:else>
+
+  <scroll-view scroll-y="true" class="wx-scroll-view">
+
+  <!--图片-->
+  <block wx:if="{{currentType==10}}">
+    <block wx:for="{{jokeList}}" wx:key="">
+      <view class="wx-joke-container flex-column">
+        <view class="flex-row">
+          <image src="{{item.profile_image}}" class="wx-joke-profile"></image>
+          <text class="wx-joke-author">{{item.name}}</text>
+          <text class="wx-joke-time">{{item.create_time}}</text>
+        </view>
+        <text class="wx-joke-text">{{item.text}}</text>
+        <view class="flex-row">
+        <image src="{{item.image0}}" class="wx-joke-image" mode="aspectFill" bindtap="imageTapAction" data-url="{{item.image0}}"></image>
+        </view>
+        <view class="flex-row">
+          <text class="wx-joke-love">{{item.love}} 赞</text>
+          <text class="wx-joke-hate">{{item.hate}} 踩</text>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <!--段子-->
+  <block wx:elif="{{currentType==29}}">
+    <block wx:for="{{jokeList}}" wx:key="">
+      <view class="wx-joke-container flex-column">
+        <view class="flex-row">
+          <image src="{{item.profile_image}}" class="wx-joke-profile"></image>
+          <text class="wx-joke-author">{{item.name}}</text>
+          <text class="wx-joke-time">{{item.create_time}}</text>
+        </view>
+        <text class="wx-joke-text">{{item.text}}</text>
+
+        <view class="flex-row">
+          <text class="wx-joke-love">{{item.love}} 赞</text>
+          <text class="wx-joke-hate">{{item.hate}} 踩</text>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <!--声音-->
+  <block wx:elif="{{currentType==31}}">
+    <block wx:for="{{jokeList}}" wx:key="">
+      <view class="wx-joke-container flex-column">
+        <view class="flex-row">
+          <image src="{{item.profile_image}}" class="wx-joke-profile"></image>
+          <text class="wx-joke-author">{{item.name}}</text>
+          <text class="wx-joke-time">{{item.create_time}}</text>
+        </view>
+        <text class="wx-joke-text">{{item.text}}</text>
+        <view class="flex-row">
+        <image src="{{item.image3}}" class="wx-joke-image" mode="aspectFill" bindtap="voiceImageTap" data-url="{{item.image3}}"></image>
+        </view>
+        <view class="flex-row">
+          <text class="wx-joke-love">{{item.love}} 赞</text>
+          <text class="wx-joke-hate">{{item.hate}} 踩</text>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <!--视频-->
+  <block wx:elif="{{currentType==41}}">
+    <block wx:for="{{jokeList}}" wx:key="">
+      <view class="wx-joke-container flex-column">
+        <view class="flex-row">
+          <image src="{{item.profile_image}}" class="wx-joke-profile"></image>
+          <text class="wx-joke-author">{{item.name}}</text>
+          <text class="wx-joke-time">{{item.create_time}}</text>
+        </view>
+        <text class="wx-joke-text">{{item.text}}</text>
+        <view class="flex-row">
+        <video src="{{item.video_uri}}" class="wx-joke-video"></video>
+        </view>
+        <view class="flex-row">
+          <text class="wx-joke-love">{{item.love}} 赞</text>
+          <text class="wx-joke-hate">{{item.hate}} 踩</text>
+        </view>
+      </view>
+    </block>
+  </block>
+  
+  </scroll-view>
+  <view class="load-more-wrap">
+        <block wx:if="{{hasMore}}">
+          <view class="load-content">
+            <text class="weui-loading"></text>
+            <text class="loading-text">努力加载中</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="load-content">
+            <text>没有更多内容了</text>
+          </view>
+        </block>
+      </view>
+  </block>
+</view>
