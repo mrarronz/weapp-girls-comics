@@ -63,6 +63,7 @@
 
   <!--声音-->
   <block wx:elif="{{currentType==31}}">
+  <audio src="" id="myAudio" bindplay="audioPlayStart" bindpause="audioPlayPause" bindeneded="audioPlayEnd"></audio>
     <block wx:for="{{jokeList}}" wx:key="">
       <view class="wx-joke-container flex-column">
         <view class="flex-row">
@@ -72,9 +73,12 @@
         </view>
         <text class="wx-joke-text">{{item.text}}</text>
         <view class="flex-row">
-        <image src="{{item.image3}}" class="wx-joke-image" mode="aspectFill" bindtap="voiceImageTap" data-url="{{item.image3}}"></image>
+        <image src="{{item.image3 ? item.image3 : item.cdn_img}}" class="wx-joke-image" mode="aspectFill" bindtap="voiceImageTap" data-url="{{item.image3 ? item.image3 : item.cdn_img}}">
+        </image>
         </view>
         <view class="flex-row">
+          <image src="../../assets/icon-voice.png" class="wx-joke-voice" bindtap="playAudioTap" data-url="{{item.voice_uri}}"></image>
+          <text class="wx-voice-playing" hidden="{{currentVoiceUrl != item.voice_uri}}">正在播放</text>
           <text class="wx-joke-love">{{item.love}} 赞</text>
           <text class="wx-joke-hate">{{item.hate}} 踩</text>
         </view>

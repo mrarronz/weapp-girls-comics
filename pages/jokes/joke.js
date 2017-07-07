@@ -31,6 +31,7 @@ Page({
     pageIndex: 1,
     showLoading: true,
     hasMore: true,
+    currentVoiceUrl: null
   },
 
   /**
@@ -44,7 +45,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.audioCtx = wx.createAudioContext("myAudio")
   },
 
   /**
@@ -108,5 +109,44 @@ Page({
     wx.previewImage({
       urls: [imageUrl],
     })
+  },
+
+  /**
+   * 点击播放声音
+   */
+  playAudioTap: function (e) {
+    var voiceUrl = e.currentTarget.dataset.url
+    if (voiceUrl == this.data.currentVoiceUrl) {
+      this.audioCtx.pause()
+      return
+    }
+    wx.showLoading({
+      title: '加载中...',
+    })
+    this.audioCtx.setSrc(voiceUrl)
+    this.audioCtx.play()
+    this.setData({ currentVoiceUrl: voiceUrl })
+  },
+
+  /**
+   * 音频开始播放
+   */
+  audioPlayStart: function () {
+    wx.hideLoading()
+  },
+
+  /**
+   * 音频播放暂停
+   */
+  audioPlayPause: function () {
+    this.setData({ currentVoiceUrl: null })
+  },
+
+  /**
+   * 音频播放结束
+   */
+  audioPlayEnd: function () {
+    this.setData({ currentVoiceUrl: null })
   }
+
 })
