@@ -4,5 +4,4 @@
 [AppId: wxcf1c42dc544c8d66](#)
 
 ## Screenshots
-![image](https://github.com/mrarronz/weapp-girls-comics/raw/master/screenshots/girls.jpg)
-![image](https://github.com/mrarronz/weapp-girls-comics/raw/master/screenshots/comics.jpg)
+![image](https://github.com/mrarronz/weapp-girls-comics/raw/master/screenshots/demo.gif)
